@@ -4,6 +4,8 @@ from src.model import train_model
 from src.evaluate import evaluate_model
 from src.profit import calculate_profit
 import config
+import joblib
+import os
 
 def main():
     df = load_data(config.DATA_PATH)
@@ -12,6 +14,14 @@ def main():
 
     model = train_model(X_train, y_train)
     print("Training complete.")
+
+    # -------------------------
+    # Save trained model
+    # -------------------------
+    os.makedirs("models", exist_ok=True)
+    model_path = os.path.join("models", "churn_model.pkl")
+    joblib.dump(model, model_path)
+    print(f"Model saved at {model_path}")
 
     cm, report, probs = evaluate_model(model, X_test, y_test)
     print("Confusion Matrix:\n", cm)
