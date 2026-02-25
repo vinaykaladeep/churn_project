@@ -7,7 +7,8 @@ from sklearn.linear_model import LogisticRegression
 def train_model(X_train, y_train):
 
     numerical_cols = X_train.select_dtypes(include=["int64", "float64"]).columns
-    categorical_cols = X_train.select_dtypes(include=["object"]).columns
+    # categorical_cols = X_train.select_dtypes(include=["object"]).columns
+    categorical_cols = X_train.select_dtypes(include=["object", "category"]).columns
 
     numeric_transformer = StandardScaler()
 
