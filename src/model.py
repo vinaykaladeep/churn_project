@@ -2,7 +2,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.linear_model import LogisticRegression
-
+from sklearn.ensemble import RandomForestClassifier
 
 def train_model(X_train, y_train):
 
@@ -24,10 +24,23 @@ def train_model(X_train, y_train):
         ]
     )
 
+    #Model used: LogisticRegression
+    # model = Pipeline(
+    #     steps=[
+    #         ("preprocessor", preprocessor),
+    #         ("classifier", LogisticRegression(max_iter=1000))
+    #     ]
+    # )
+
+    #Model used: RandomForest
     model = Pipeline(
-        steps=[
-            ("preprocessor", preprocessor),
-            ("classifier", LogisticRegression(max_iter=1000))
+    steps=[
+        ("preprocessor", preprocessor),
+        ("classifier", RandomForestClassifier(
+            n_estimators=200,
+            max_depth=None,
+            random_state=42
+        ))
         ]
     )
 
