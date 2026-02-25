@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Data
+data/raw/
+data/processed/
+
+# Models
+models/
+*.pkl
+*.joblib
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+Thumbs.db
+Desktop.ini

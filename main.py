@@ -1,0 +1,26 @@
+from src.data import load_data
+from src.preprocessing import split_data
+from src.model import train_model
+from src.evaluate import evaluate_model
+from src.profit import calculate_profit
+import config
+
+def main():
+    df = load_data(config.DATA_PATH)
+
+    X_train, X_test, y_train, y_test = split_data(df)
+
+    model = train_model(X_train, y_train)
+    print("Training complete.")
+
+    cm, report, probs = evaluate_model(model, X_test, y_test)
+    print("Confusion Matrix:\n", cm)
+    print("\nClassification Report:\n", report)
+
+    results = calculate_profit(y_test.values, probs)
+
+    best = sorted(results, key=lambda x: x[1], reverse=True)[0]
+    print("\nBest Threshold:", best)
+
+if __name__ == "__main__":
+    main()
