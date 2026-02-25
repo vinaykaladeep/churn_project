@@ -19,8 +19,16 @@ def main():
 
     results = calculate_profit(y_test.values, probs)
 
-    best = sorted(results, key=lambda x: x[1], reverse=True)[0]
-    print("\nBest Threshold:", best)
+    # best = sorted(results, key=lambda x: x[1], reverse=True)[0]
+    # print("\nBest Threshold:", best)
+
+    results_df = calculate_profit(y_test.values, probs)
+
+    print("\nTop 5 Thresholds by Profit:")
+    print(results_df.head())
+
+    best_threshold = results_df.iloc[0]["threshold"]
+    print("\nBest Threshold:", best_threshold)
 
 if __name__ == "__main__":
     main()
