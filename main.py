@@ -23,9 +23,11 @@ def main():
     joblib.dump(model, model_path)
     print(f"Model saved at {model_path}")
 
-    cm, report, probs = evaluate_model(model, X_test, y_test)
-    print("Confusion Matrix:\n", cm)
-    print("\nClassification Report:\n", report)
+    metrics, cm, probs = evaluate_model(model, X_test, y_test)
+    print("\nModel Evaluation Metrics:")
+    for k, v in metrics.items():
+        print(f"{k}: {v}")
+    print("\nConfusion Matrix:\n", cm)
 
     results = calculate_profit(y_test.values, probs)
 

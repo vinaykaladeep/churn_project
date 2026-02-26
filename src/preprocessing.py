@@ -50,14 +50,12 @@ def feature_engineering(df: pd.DataFrame) -> pd.DataFrame:
 
 def split_data(df: pd.DataFrame):
 
-    # Apply feature engineering first
-    df = feature_engineering(df)
+    # DO NOT apply feature engineering here
+    # Pipeline will handle it
 
-    # Separate features and target
     X = df.drop("Churn", axis=1)
     y = df["Churn"]
 
-    # Train-test split
     X_train, X_test, y_train, y_test = train_test_split(
         X, y,
         test_size=config.TEST_SIZE,
