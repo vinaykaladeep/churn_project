@@ -17,3 +17,7 @@ models/
 # OS
 Thumbs.db
 Desktop.ini
+
+# MLflow
+mlruns/
+mlartifacts/
